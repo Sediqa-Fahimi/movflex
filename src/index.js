@@ -1,4 +1,4 @@
 import movies from './movies';
 
-// const value = movies;
-document.getElementById('test').textContent = movies();
+const value = movies();
+document.getElementById('test').textContent = value;
