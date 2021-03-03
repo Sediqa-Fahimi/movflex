@@ -8,5 +8,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.js', '*']
-  }
+  },
+  mode: 'development',
+  devtool: 'source-map'
 };
