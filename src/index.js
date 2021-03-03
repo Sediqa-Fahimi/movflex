@@ -35,12 +35,16 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         g.append("g")
             .call(axisLeft(yScale)
-            .ticks(10))
-            .append("text")
-            .attr("y", 6)
-            .attr("dy", "0.71em")
-            .attr("text-anchor", "end")
-            .text("value");
+            .ticks(10));
+
+        g.selectAll(".bar")
+         .data(data)
+         .enter().append("rect")
+         .attr("class", "bar")
+         .attr("x", d => xScale(d.year))
+         .attr("y", d => yScale(d.tv_shows))
+         .attr("width", xScale.bandwidth())
+         .attr("height", d => height - yScale(d.tv_shows));
 
     }).catch(err => {
         if(err) throw err;
@@ -48,36 +52,3 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 
 
-// import { csv, select, scaleLinear, max, scaleBand} from 'd3';
-//
-//    const svg = select('svg');
-//
-//     const width = +svg.attr('width');
-//     const height = +svg.attr('height');
-//
-//     const render = data =>{
-//         const yScale = scaleLinear()
-//             .domain([0, max(data, d => d.tv_shows)])
-//             .range([0, height]);
-//
-//         const xScale = scaleBand()
-//             .domain(data.map(d => d.year))
-//             .range([0, width]);
-//        
-//         svg.selectAll('rect').data(data)
-//             .enter().append('rect')
-//                 .attr('x', d => xScale(d.year))
-//                 // .attr('y', 20)
-//                 .attr('width', xScale.bandwidth())
-//                 .attr('height',d => yScale(d.tv_shows));
-//
-//     };
-//
-//     csv("./data/tvs_movies.csv").then((data) => {
-//         data.forEach(d => {
-//             d.year = parseFloat(d.year);
-//             d.tv_shows = parseFloat(d.tv_shows);
-//             d.movies = parseFloat(d.movies);
-//         });
-//         render(data);
-//     });
