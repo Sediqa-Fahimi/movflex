@@ -8,6 +8,14 @@ document.addEventListener("DOMContentLoaded",()=>{
     const width = +svg.attr('width') - margin;
     const height = +svg.attr('height') - margin;
 
+    svg.append("text")
+        .attr("transform", "translate(100,0)")
+        .attr("x", 50)
+        .attr("y", 50)
+        .attr("font-size", "18px")
+        .attr("text-align", "center")
+        .text("TV Shows")
+
     const xScale = scaleBand()
         .range([0, width])
         .padding(0.4);
@@ -31,11 +39,24 @@ document.addEventListener("DOMContentLoaded",()=>{
         
         g.append("g")
             .attr("transform", "translate(0," + height + ")")
-            .call(axisBottom(xScale));
+            .call(axisBottom(xScale))
+            .append("text")
+            .attr("y", height - 250)
+            .attr("x", width - 100)
+            .attr("text-anchor", "end")
+            .attr("stroke", "black")
+            .text("Year");
 
         g.append("g")
             .call(axisLeft(yScale)
-            .ticks(10));
+            .ticks(10))
+            .append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "-5.1em")
+            .attr("text-anchor", "end")
+            .attr("stroke", "black")
+            .text("Total Number");
 
         g.selectAll(".bar")
          .data(data)
