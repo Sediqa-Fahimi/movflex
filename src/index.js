@@ -16,9 +16,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     };
 
-    csv("./data/data.csv").then((data) => {
+    csv("./data/tvs_movies.csv").then((data) => {
         data.forEach(d => {
-            d.release_year = parseFloat(d.release_year);
+            d.year = parseFloat(d.year);
+            d.tv_shows = parseFloat(d.tv_shows);
+            d.movies = parseFloat(d.movies);
         });
         render(data);
     });
