@@ -1,17 +1,17 @@
-import movies from './movies';
-import { select } from 'd3';
+// import movies from './movies';
+import { csv } from 'd3';
+//
+// const value = movies();
+// document.getElementById('test').textContent = value;
+// const div = select('div');
+// div.append('svg');
+document.addEventListener("DOMContentLoaded",()=>{
 
-const value = movies();
-document.getElementById('test').textContent = value;
-
-const div = select('div');
-
-const svg = div.append('svg')
-                .attr('width',500)
-                .attr('height',500);
-
-const cir = svg.append('circle')
-                .attr('r',50)
-                .attr('cx',500/2)
-                .attr('cy',500/2)
+    csv("./data/data.csv").then((data) => {
+        data.forEach(d => {
+            d.release_year = parseFloat(d.release_year);
+        });
+        console.log(data);
+    });
+});
 
