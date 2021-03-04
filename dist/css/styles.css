@@ -14,3 +14,6 @@ body{
     display: flex;
     justify-content: space-between;
 }
+.footer > div{
+    text-align: center;
+}
