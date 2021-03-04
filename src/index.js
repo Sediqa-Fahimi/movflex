@@ -1,75 +1,78 @@
 
-import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft} from 'd3';
+import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft, scaleOrdinal} from 'd3';
 
 document.addEventListener("DOMContentLoaded",()=>{
 
-    const svg = select('svg');
-    const margin = 200;
-    const width = +svg.attr('width') - margin;
-    const height = +svg.attr('height') - margin;
+    const margin = {top: 30, right: 30, bottom: 70, left: 60};
+    const width = 460 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
 
-    svg.append("text")
-        .attr("transform", "translate(100,0)")
-        .attr("x", 50)
-        .attr("y", 50)
-        .attr("font-size", "18px")
-        .attr("text-align", "center")
-        .text("TV Shows")
+    // append the svg object to the body of the page
+    const svg = select("#my_dataviz")
+        .append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
 
-    const xScale = scaleBand()
-        .range([0, width])
-        .padding(0.4);
+    // Initialize the X axis
+    const x = scaleBand()
+        .range([ 0, width ])
+        .padding(0.2);
+    const xAxis = svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+
+    // Initialize the Y axis
+    const y = scaleLinear()
+        .range([ height, 0]);
+    const yAxis = svg.append("g")
+        .attr("class", "myYaxis")
+
+
+
+    function update(selectedVar) {
+
+        csv("./data/tvs_movies.csv").then((data) => {
+            data.forEach(d => {
+                d.year = parseFloat(d.year);
+                d.tv_shows = parseFloat(d.tv_shows);
+                d.movies = parseFloat(d.movies);
+            });
+
+            x.domain(data.map(function(d) { return d.year; }))
+            xAxis.transition().duration(1000).call(axisBottom(x))
+
+            // Add Y axis
+            y.domain([0, max(data, function(d) { return +d[selectedVar] }) ]);
+            yAxis.transition().duration(1000).call(axisLeft(y));
+
+            // variable u: map data to existing bars
+            const u = svg.selectAll("rect")
+                .data(data)
+
+            // update bars
+            u
+                .enter()
+                .append("rect")
+                .merge(u)
+                .transition()
+                .duration(1000)
+                    .attr("x", function(d) { return x(d.year); })
+                    .attr("y", function(d) { return y(d[selectedVar]); })
+                    .attr("width", x.bandwidth())
+                    .attr("height", function(d) { return height - y(d[selectedVar]); })
+                    .attr("fill", "#69b3a2")
     
-    const yScale = scaleLinear()
-        .range([height, 0]);
 
-    const g = svg.append("g")
-               .attr("transform", "translate(" + 100 + "," + 100 + ")");
+        }).catch(err => {
+            if(err) throw err;
+        })
 
+    }
 
-    csv("./data/tvs_movies.csv").then((data) => {
-        data.forEach(d => {
-            d.year = parseFloat(d.year);
-            d.tv_shows = parseFloat(d.tv_shows);
-            d.movies = parseFloat(d.movies);
-        });
-
-        xScale.domain(data.map(d => d.year));
-        yScale.domain([0, max(data, d => d.tv_shows)]);
-        
-        g.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(axisBottom(xScale))
-            .append("text")
-            .attr("y", height - 250)
-            .attr("x", width - 100)
-            .attr("text-anchor", "end")
-            .attr("stroke", "black")
-            .text("Year");
-
-        g.append("g")
-            .call(axisLeft(yScale)
-            .ticks(10))
-            .append("text")
-            .attr("transform", "rotate(-90)")
-            .attr("y", 6)
-            .attr("dy", "-5.1em")
-            .attr("text-anchor", "end")
-            .attr("stroke", "black")
-            .text("Total Number");
-
-        g.selectAll(".bar")
-         .data(data)
-         .enter().append("rect")
-         .attr("class", "bar")
-         .attr("x", d => xScale(d.year))
-         .attr("y", d => yScale(d.tv_shows))
-         .attr("width", xScale.bandwidth())
-         .attr("height", d => height - yScale(d.tv_shows));
-
-    }).catch(err => {
-        if(err) throw err;
-    })
+    update('tv_shows');
+    // update('movies');
 });
 
 
