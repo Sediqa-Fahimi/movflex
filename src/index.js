@@ -1,5 +1,5 @@
 
-import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft, scaleOrdinal} from 'd3';
+import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft } from 'd3';
 
 document.addEventListener("DOMContentLoaded",()=>{
 
@@ -76,6 +76,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     update('movies');
     select('#tv-shows-btn').on('click',() => update('tv_shows'));
     select('#movies-btn').on('click',() => update('movies'));
+ 
 });
 
 
