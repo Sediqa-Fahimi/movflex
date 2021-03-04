@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const y = scaleLinear()
         .range([ height, 0]);
     const yAxis = svg.append("g")
-        .attr("class", "myYaxis")
+        // .attr("class", "myYaxis")
 
 
 
@@ -41,7 +41,10 @@ document.addEventListener("DOMContentLoaded",()=>{
             });
 
             x.domain(data.map(function(d) { return d.year; }))
-            xAxis.transition().duration(1000).call(axisBottom(x))
+            xAxis
+                .transition()
+                .duration(1000)
+                .call(axisBottom(x))
 
             // Add Y axis
             y.domain([0, max(data, function(d) { return +d[selectedVar] }) ]);
@@ -62,7 +65,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                     .attr("y", function(d) { return y(d[selectedVar]); })
                     .attr("width", x.bandwidth())
                     .attr("height", function(d) { return height - y(d[selectedVar]); })
-                    .attr("fill", "#69b3a2")
+                    .attr("fill", "#F85B49")
     
 
         }).catch(err => {
@@ -70,9 +73,9 @@ document.addEventListener("DOMContentLoaded",()=>{
         })
 
     }
-
-    update('tv_shows');
-    // update('movies');
+    update('movies');
+    select('#tv-shows-btn').on('click',() => update('tv_shows'));
+    select('#movies-btn').on('click',() => update('movies'));
 });
 
 
