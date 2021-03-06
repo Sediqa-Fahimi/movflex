@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded",()=>{
         })
 
     }
-    update('movies');
+    update('tv_shows');
     select('#tv-shows-btn').on('click',() => update('tv_shows'));
     select('#movies-btn').on('click',() => update('movies'));
     select('#dramas-btn').on('click',() => update('dramas'));
