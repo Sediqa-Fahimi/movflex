@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     const height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
-    const svg = select("#my_dataviz")
+    const svg = select(".chart")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     function update(selectedVar) {
 
-        csv("./data/tvs_movies.csv").then((data) => {
+        csv("./data/categories.csv").then((data) => {
             data.forEach(d => {
                 d.year = parseFloat(d.year);
                 d.tv_shows = parseFloat(d.tv_shows);
@@ -76,7 +76,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     update('movies');
     select('#tv-shows-btn').on('click',() => update('tv_shows'));
     select('#movies-btn').on('click',() => update('movies'));
- 
+    select('#dramas-btn').on('click',() => update('dramas'));
+    select('#comedies-btn').on('click',() => update('comedies'));
+    select('#action-btn').on('click',() => update('action'));
+    select('#kids-tv-btn').on('click',() => update('kids_tv'));
+    
 });
 
 

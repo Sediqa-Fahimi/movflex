@@ -45,6 +45,7 @@ img:hover{
     line-height: 1.5;
     width: 600px;
     font-size: 15px;
+    margin-bottom: 5px;
 }
 .footer-container{
     background: rgb(62, 60, 60);
@@ -62,4 +63,7 @@ img:hover{
 }
 .footer a{
     text-decoration: underline;
+}
+#my_dataviz{
+    border: 1px solid red;
 }
