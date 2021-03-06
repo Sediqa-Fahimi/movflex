@@ -96,9 +96,15 @@ button:hover{
 button:focus{
     color: #DF7172;
 }
-svg{
-    /* border: 2px solid green; */
-}
+/* svg{
+    border: 2px solid green;
+} */
 rect:hover{
     opacity: .85;
+}
+.Y-axis{
+    font-weight: 600;
+}
+.X-axis{
+    font-weight: 600;
 }
