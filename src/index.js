@@ -4,7 +4,7 @@ import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft } from '
 document.addEventListener("DOMContentLoaded",()=>{
 
     const margin = {top: 30, right: 30, bottom: 70, left: 60};
-    const width = 700 - margin.left - margin.right;
+    const width = 740 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page

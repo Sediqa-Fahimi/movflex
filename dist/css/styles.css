@@ -65,20 +65,20 @@ img:hover{
     text-decoration: underline;
 }
 .chart{
-    border: 1px solid red;
+    /* border: 1px solid red; */
     width: 90%;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 .options{
-    border: 1px solid blue;
+    /* border: 1px solid blue; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 button{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 8px;
     padding: 8px;
     width: 110px;
@@ -95,5 +95,5 @@ button:focus{
     color: #DF7172;
 }
 svg{
-    border: 2px solid green;
+    /* border: 2px solid green; */
 }
