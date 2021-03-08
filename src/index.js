@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     const width = 740 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
 
-    // append the svg object to the body of the page
     const svg = select(".chart")
         .append("svg")
             .attr("width", width + margin.left + margin.right)
@@ -16,7 +15,6 @@ document.addEventListener("DOMContentLoaded",()=>{
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
-    // Initialize the X axis
     const x = scaleBand()
         .range([ 0, width ])
         .padding(0.2);
@@ -25,7 +23,6 @@ document.addEventListener("DOMContentLoaded",()=>{
         .attr("class", "X-axis")
 
 
-    // Initialize the Y axis
     const y = scaleLinear()
         .range([ height, 0]);
     const yAxis = svg.append("g")
@@ -51,17 +48,14 @@ document.addEventListener("DOMContentLoaded",()=>{
                 .duration(1000)
                 .call(axisBottom(x))
 
-            // Add Y axis
             y.domain([0, max(data, d => +d[selectedVar] )]);
             yAxis.transition().duration(1000).call(axisLeft(y));
 
 
 
-            // variable u: map data to existing bars
             const u = svg.selectAll("rect")
                 .data(data)
             
-            // update bars
             u
                 .enter()
                 .append("rect")
@@ -87,7 +81,7 @@ document.addEventListener("DOMContentLoaded",()=>{
                         .style('opacity', 0);
                 })
                 .transition()
-                .duration(1000)
+                .duration(800)
                     .attr("x", d => x(d.year))
                     .attr("y", d => y(d[selectedVar]))
                     .attr("width", x.bandwidth())
