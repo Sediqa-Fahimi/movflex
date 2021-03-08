@@ -1,5 +1,5 @@
 
-import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft } from 'd3';
+import { csv, select, scaleLinear, max, scaleBand, axisBottom, axisLeft, event } from 'd3';
 
 document.addEventListener("DOMContentLoaded",()=>{
 
@@ -31,7 +31,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     const yAxis = svg.append("g")
         .attr("class", "Y-axis")
 
-
+    const div = select('body')
+        .append('div')
+        .attr('class', 'info-hint')
+        .style('opacity', 0)
 
     function update(selectedVar) {
 
@@ -49,8 +52,10 @@ document.addEventListener("DOMContentLoaded",()=>{
                 .call(axisBottom(x))
 
             // Add Y axis
-            y.domain([0, max(data, d => d[selectedVar] )]);
+            y.domain([0, max(data, d => +d[selectedVar] )]);
             yAxis.transition().duration(1000).call(axisLeft(y));
+
+
 
             // variable u: map data to existing bars
             const u = svg.selectAll("rect")
@@ -61,6 +66,26 @@ document.addEventListener("DOMContentLoaded",()=>{
                 .enter()
                 .append("rect")
                 .merge(u)
+                .on('mouseover', function(e,d){
+                    select(this).transition().duration('50')
+                    .attr('opacity', '.85');
+
+                    div.transition()
+                        .duration(50)
+                        .style('opacity', 1);
+                    console.log(e)
+                    div.html(d[selectedVar])
+                        .style('left', (e.pageX + 5) + 'px')
+                        .style('top', (e.pageY - 15) + 'px')
+                })
+                .on('mouseout', function(e,d){
+                    select(this).transition().duration('50')
+                    .attr('opacity', '1');
+
+                    div.transition()
+                        .duration(50)
+                        .style('opacity', 0);
+                })
                 .transition()
                 .duration(1000)
                     .attr("x", d => x(d.year))

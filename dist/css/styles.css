@@ -99,12 +99,23 @@ button:focus{
 /* svg{
     border: 2px solid green;
 } */
-rect:hover{
+/* rect:hover{
     opacity: .85;
-}
+} */
 .Y-axis{
     font-weight: 600;
 }
 .X-axis{
     font-weight: 600;
+}
+.info-hint{
+    border: 1px solid #5b5d5e;
+    background: rgb(254, 254, 254);
+    color: rgb(73, 72, 72);
+    position: absolute;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 6px;
+    pointer-events: none;
 }
