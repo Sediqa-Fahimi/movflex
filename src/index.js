@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded",()=>{
                     div.transition()
                         .duration(50)
                         .style('opacity', 1);
-                    console.log(e)
                     div.html(d[selectedVar])
                         .style('left', (e.pageX + 5) + 'px')
                         .style('top', (e.pageY - 15) + 'px')
