@@ -1,7 +1,14 @@
 
 # movflex
 
+
+
 <img src="https://github.com/Sediqa-Fahimi/movflex/blob/main/assets/images/moveflexhomepage.png" alt="Home page" />
+
+
+
+### [Live demo here](https://sediqa-fahimi.github.io/movflex/)
+
 
 
 ## Overview
@@ -10,15 +17,12 @@ Movflex is a data visualization learning project. Here you can find information 
 
 
 
-### [Live demo here](https://sediqa-fahimi.github.io/movflex/)
-
-
-
 ## Technologies used:
 
 * **JavaScript** for application functionality.
 * **HTML**, **CSS**, and **SVG** for page structure and design.
 * **D3.js** library to create interactive data visualization.
+
 
 
 ## Code Snippet:
@@ -49,6 +53,7 @@ In order to display the total number of movies on hover effect, added mouseover 
                         .style('opacity', 0);
                  })
 ```
+
 
 
 #### To use on local machine, run the following commands first:
