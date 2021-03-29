@@ -1,6 +1,8 @@
 
 # movflex
 
+<img src="https://github.com/Sediqa-Fahimi/movflex/blob/main/assets/images/moveflexhomepage.png" alt="Home page" />
+
 ## Overview
 
 Movflex is a data visualization learning project. Here you can find information about the total number of Netflix's movies and TV Shows and other categories from 2010 until 2020. Select your desired category to get information for that category. The data comes from [Kaggle.com: TV Shows and Movies listed on Netflix.](https://www.kaggle.com/shivamb/netflix-shows)
