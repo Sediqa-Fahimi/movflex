@@ -51,6 +51,12 @@ In order to display the total number of movies on hover effect, added mouseover 
 ```
 
 
+#### To use on local machine, run the following commands first:
+
+**>npm install**
+
+**>npm run dev-server**
+
 
 
 
