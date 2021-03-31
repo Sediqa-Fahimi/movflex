@@ -70,6 +70,8 @@ img:hover{
     margin: 0 auto;
     display: flex;
     justify-content: space-evenly;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
 .options{
     /* border: 1px solid blue; */
@@ -99,9 +101,7 @@ button:focus{
 /* svg{
     border: 2px solid green;
 } */
-/* rect:hover{
-    opacity: .85;
-} */
+
 .Y-axis{
     font-weight: 600;
 }

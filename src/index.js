@@ -22,11 +22,11 @@ document.addEventListener("DOMContentLoaded",()=>{
         .attr("transform", "translate(0," + height + ")")
         .attr("class", "X-axis")
 
-
     const y = scaleLinear()
         .range([ height, 0]);
     const yAxis = svg.append("g")
         .attr("class", "Y-axis")
+       
 
     const div = select('body')
         .append('div')
@@ -44,12 +44,29 @@ document.addEventListener("DOMContentLoaded",()=>{
 
             x.domain(data.map(d => d.year));
             xAxis
-                .transition()
-                .duration(1000)
                 .call(axisBottom(x))
+                .append("text")
+                .attr("y", height - 250)
+                .attr("x", width - 100)
+                .attr("text-anchor", "end")
+                .attr("font-size","10px")
+                .attr("fill", "black")
+                .attr("letter-spacing", "0.2em")
+                .text("Year");
+                
 
             y.domain([0, max(data, d => +d[selectedVar] )]);
-            yAxis.transition().duration(1000).call(axisLeft(y));
+            yAxis.call(axisLeft(y))
+                .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", 6)
+                .attr("dy", "-5.1em")
+                .attr("text-anchor", "end")
+                .attr("font-size","10px")
+                .attr("fill", "black")
+                .attr("letter-spacing", "0.2em")
+                .text("Total Number");
+                
 
 
 
