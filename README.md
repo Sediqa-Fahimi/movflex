@@ -3,7 +3,7 @@
 
 
 
-<img src="https://github.com/Sediqa-Fahimi/movflex/blob/main/assets/images/movflexhmpg.png" alt="Home page" />
+<img src="https://github.com/Sediqa-Fahimi/movflex/blob/main/feature-image.png" alt="Home page" />
 
 
 
